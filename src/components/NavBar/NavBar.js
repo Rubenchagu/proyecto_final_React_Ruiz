@@ -1,7 +1,7 @@
-import logo from "./LogoNft.jpg"
+import logo from "../../Assets/LogoNft.jpg"
 import "./NavBar.css"
 
-const NavBar= () => {
+const NavBar= ({children}) => {
     return (
         <header>
             <nav className="navbar navbar-expand-lg navbar-dark bg-dark"> 
@@ -27,6 +27,9 @@ const NavBar= () => {
                             </li>
                             <li className="nav-item">
                                 <a className="nav-link" href="./">About</a>
+                            </li>
+                            <li className="nav-item">
+                                <a className="nav-link" href="./">{children}</a>
                             </li>
                         </ul>
                     </div>
