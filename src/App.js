@@ -9,9 +9,8 @@ function App() {
       <NavBar>
         <CartWidget/>
       </NavBar>
-      <ItemListContainer/>
+      <ItemListContainer greetings="Articulo"/>
    </div>
-   
   );
 }
 

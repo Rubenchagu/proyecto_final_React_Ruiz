@@ -4,8 +4,7 @@ import "./NavBar.css"
 const NavBar= ({children}) => {
     return (
         <header>
-            <nav className="navbar navbar-expand-lg navbar-dark bg-dark"> 
-            <div className="collapse navbar-collapse"></div> 
+            <nav className="navbar navbar-expand-lg navbar-dark bg-dark">  
             <div className="collapse navbar-collapse"><img src={logo} alt="Logo NFT e-commerce" /></div>  
                 <div className="container-fluid">
                     <a className="navbar-brand" href="./">NFT Ruiz Market</a>
