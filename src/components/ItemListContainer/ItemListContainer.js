@@ -1,21 +1,27 @@
 
-import ItemCount from "../ItemCount/ItemCount";
-import "./itemListContainer.css";
+import React, { useState, useEffect, } from 'react'
+import ItemList from '../ItemList/ItemList';
 
-const Cards = [{id:1},{id:2},{id:3},{id:4},{id:5},{id:6},{id:7},{id:8},{id:9},{id:10}]
-
-const ItemListContainer = ({greetings}) => {
-  return (
+const ItemListContainer = () => {
+  
+  const [products, setProducts]= useState([])
+  const [loadingPage, setLoadingPage] = useState(true)
+  
+    useEffect(() => {
+      setTimeout(() => {
+        fetch("/fakeProducts.json")
+        .then(Response => Response.json())
+        .then ((data) => {
+          setProducts([data.NTF01,data.NTF02,data.NTF03,data.NTF04,data.NTF05,data.NTF06,data.NTF07,data.NTF08,data.NTF09,data.NTF10])
+        })
+        .catch((err) => console.log("Error al leer la base de Datos"))
+        .finally(() => setLoadingPage(false))
+      }, 3000);
+    }, [])
     
-    <div className="row padreCards">    
-      {Cards.map((card, index) => {
-        return(
-          <div className="card text-white bg-info mb-3 tamanhoCards text-center" key={card.id}>
-            <div className="card-header">{greetings} {index+1}</div>
-            <ItemCount stock={10} initial={1}/>
-          </div>)
-        })  
-      }
+  return (
+    <div> 
+      {loadingPage ? <img style={{width: "100%", height:"100%"}} src="https://c.tenor.com/FBeNVFjn-EkAAAAC/ben-redblock-loading.gif" alt="Loading"/> : <ItemList products={products}/>}   
     </div>
   )
 }

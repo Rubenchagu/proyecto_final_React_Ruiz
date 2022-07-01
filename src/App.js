@@ -9,7 +9,7 @@ function App() {
       <NavBar>
         <CartWidget/>
       </NavBar>
-      <ItemListContainer greetings="Articulo"/>
+      <ItemListContainer/>
    </div>
   );
 }
