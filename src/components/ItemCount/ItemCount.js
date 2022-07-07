@@ -20,12 +20,12 @@ const ItemCount = ({stock, initial}) => {
         <div>
             <div className="d-flex justify-content-center">
                 <button className="btn btn-secondary" onClick={()=>count(-1)}>-</button>
-                <span>{cantidad}</span>
+                <span style={{margin:"10px"}}>{cantidad}</span>
                 <button className="btn btn-secondary" onClick={()=>count(+1)}>+</button>
             </div>
-            <button className="btn btn-primary" onClick={() => agregarAlCarrito()}>Agregar al Carrito</button>
+            <button style={{margin:"10px"}} className="btn btn-primary" onClick={() => agregarAlCarrito()}>Agregar al Carrito</button>
         </div>
     )
 }
 
-export default ItemCount
+export default ItemCount 

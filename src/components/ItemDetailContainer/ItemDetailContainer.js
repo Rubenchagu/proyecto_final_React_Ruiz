@@ -1,29 +1,33 @@
-import React, { useState } from 'react'
+import React, { useEffect, useState } from 'react'
 import ItemDetail from '../ItemDetail/ItemDetail'
+import {useParams} from "react-router-dom"
 
-const ItemDetailContainer = ({product}) => {
+const ItemDetailContainer = () => {
     
-    const [Detail, setDetail] = useState(true)
+    const [singleNft, setSingleNft] = useState([])
+    const [loadingPage, setLoadingPage] = useState(true)
+    const {id} = useParams()
+
+    useEffect(() => {
+        
+        setTimeout(() => {
+          fetch(`https://rickandmortyapi.com/api/character/${id}`)
+          .then(Response => Response.json())
+          .then ((data) => setSingleNft(data))
+          .catch((err) => console.log("Error al leer la base de Datos"))
+          .finally(() => setLoadingPage(false))
+        }, 2000);
+    }, [id])
     
-    const verInfo = () => {
-        setDetail (false)
-    }
 
-    const ocultarInfo = () => {
-        setDetail (true)
-    }
-
-  return (
-    <div>
-        {Detail 
-        ? <button className="btn btn-primary" onClick={() => verInfo()}>Ver info</button> 
-        :<div className='card'>
-            <ItemDetail product={product}/>
-            <button className="btn btn-primary" onClick={() => ocultarInfo()}>Ocultar info</button>
+    return (
+        <div style={{margin:"20px 0 0 0"}}>
+            {loadingPage 
+            ? <img style={{width: "100%", height:"100%"}} src="https://c.tenor.com/FBeNVFjn-EkAAAAC/ben-redblock-loading.gif" alt="Loading"/> 
+            : <ItemDetail singleNft={singleNft}/>
+            }   
         </div>
-        }   
-    </div>
-  )
+    )
 }
 
 export default ItemDetailContainer

@@ -1,21 +1,21 @@
 import React from 'react'
-import ItemCount from '../ItemCount/ItemCount'
-import ItemDetailContainer from '../ItemDetailContainer/ItemDetailContainer'
+import infoExtra from '../../infoExtra'
+import {NavLink} from "react-router-dom"
 
-const Item = ({product, infoNFT, i}) => {
+const Item = ({product}) => { 
   
   const {name, image, id} = product
-  const {precios, stock} = infoNFT
   
   return (
-    <div className="card text-white bg-info mb-3 align-items-center" style={{width: "20rem"}}>
+    <div className="card text-white bg-info mb-3 align-items-center" style={{width: "20rem", margin:"20px"}}>
         <div className="card-header">{name}</div>
         <div className="card-body">
-            <h6 className="card-title">Precio: {precios[id-1]} ETH</h6>
+            <h6 className="card-title">Precio: {infoExtra.precios[id-1]} ETH</h6>
             <img style={{width: "100px", height: "100px"}} src={image} alt={name} />
         </div>  
-        <ItemCount stock={stock[id-1]} initial={1}/>
-        <ItemDetailContainer product={product}/>
+        <NavLink to={`/character/${id}`} className="nav-link active">
+          <button className="btn btn-primary"> Ver Información </button>
+        </NavLink>
     </div>
   )
 }
