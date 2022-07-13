@@ -1,9 +1,16 @@
-import React from 'react'
+import React, { useState } from 'react'
 import ItemCount from '../ItemCount/ItemCount'
 import infoExtra from '../../infoExtra'
 import { FaEthereum } from 'react-icons/fa';
+import { NavLink } from 'react-router-dom';
 
 const ItemDetail = ({singleNft}) => {
+
+    const [checkOut, setCheckOut ] = useState(true)
+
+    const goToCart = () => {
+        setCheckOut(false) 
+    }
     
     const { id, image, name, species, gender, created} = singleNft
     return (
@@ -17,7 +24,12 @@ const ItemDetail = ({singleNft}) => {
             <h6>Creado: {created}</h6>
         </div>
         <div className="card-header m-3 w-100 text-white text-center bg-success">Precio:<FaEthereum/> {infoExtra.precios[id-1]} ETH</div>
-        <ItemCount stock={infoExtra.stock[id-1]} initial={1}/>
+        
+        {
+        checkOut
+        ? <ItemCount goToCart= {goToCart} stock={infoExtra.stock[id-1]} initial={1}/>
+        : <NavLink to="/Cart"><button className="btn btn-secondary"> Finalizar Compra </button></NavLink>
+        }
     </div>
     )
 }

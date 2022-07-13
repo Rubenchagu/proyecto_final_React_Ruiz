@@ -1,7 +1,7 @@
 
 import { useState } from "react"
 
-const ItemCount = ({stock, initial}) => {
+const ItemCount = ({stock, initial, goToCart}) => {
   
     const [cantidad, setCantidad] = useState(initial)
     
@@ -13,18 +13,18 @@ const ItemCount = ({stock, initial}) => {
     }
 
     const agregarAlCarrito = () => {
-        setCantidad (initial) 
+        goToCart();
     } 
 
     return (
-        <div>
+        <>
             <div className="d-flex justify-content-center">
                 <button className="btn btn-secondary" onClick={()=>count(-1)}>-</button>
                 <span style={{margin:"10px"}}>{cantidad}</span>
                 <button className="btn btn-secondary" onClick={()=>count(+1)}>+</button>
             </div>
             <button style={{margin:"10px"}} className="btn btn-primary" onClick={() => agregarAlCarrito()}>Agregar al Carrito</button>
-        </div>
+        </>
     )
 }
 
