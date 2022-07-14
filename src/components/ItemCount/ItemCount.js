@@ -12,10 +12,6 @@ const ItemCount = ({stock, initial, goToCart}) => {
         }
     }
 
-    const agregarAlCarrito = () => {
-        goToCart();
-    } 
-
     return (
         <>
             <div className="d-flex justify-content-center">
@@ -23,7 +19,7 @@ const ItemCount = ({stock, initial, goToCart}) => {
                 <span style={{margin:"10px"}}>{cantidad}</span>
                 <button className="btn btn-secondary" onClick={()=>count(+1)}>+</button>
             </div>
-            <button style={{margin:"10px"}} className="btn btn-primary" onClick={() => agregarAlCarrito()}>Agregar al Carrito</button>
+            <button style={{margin:"10px"}} className="btn btn-primary" onClick={() => goToCart(cantidad)}>Agregar al Carrito</button>
         </>
     )
 }

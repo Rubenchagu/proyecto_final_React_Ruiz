@@ -1,15 +1,19 @@
-import React, { useState } from 'react'
+
+import React, { useState, useContext } from 'react'
 import ItemCount from '../ItemCount/ItemCount'
 import infoExtra from '../../infoExtra'
 import { FaEthereum } from 'react-icons/fa';
 import { NavLink } from 'react-router-dom';
+import { cartContext } from "../Context/CartContext";
 
 const ItemDetail = ({singleNft}) => {
 
+    const {addProduct} = useContext(cartContext)
     const [checkOut, setCheckOut ] = useState(true)
 
-    const goToCart = () => {
-        setCheckOut(false) 
+    const goToCart = (quantity1) => {
+        setCheckOut(false)
+        addProduct(singleNft, quantity1, singleNft.id)
     }
     
     const { id, image, name, species, gender, created} = singleNft
@@ -28,7 +32,10 @@ const ItemDetail = ({singleNft}) => {
         {
         checkOut
         ? <ItemCount goToCart= {goToCart} stock={infoExtra.stock[id-1]} initial={1}/>
-        : <NavLink to="/Cart"><button className="btn btn-secondary"> Finalizar Compra </button></NavLink>
+        : <div> 
+            <NavLink to="/Cart"><button className="btn btn-secondary m-1"> Finalizar Compra </button></NavLink>
+            <NavLink to="/"><button className="btn btn-primary m-1">Ver más NFTs</button></NavLink>
+        </div>
         }
     </div>
     )

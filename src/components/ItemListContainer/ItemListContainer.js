@@ -19,7 +19,7 @@ const ItemListContainer = () => {
       .then (({results}) => setProducts(results))
       .catch((err) => console.log("Error al leer la base de Datos"))
       .finally(() => setLoadingPage(false))
-    }, 2000);
+    }, 500);
   }, [specieId])
     
   return (
