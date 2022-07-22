@@ -7,6 +7,7 @@ import { NavLink } from 'react-router-dom';
 import { cartContext } from "../Context/CartContext";
 
 const ItemDetail = ({singleNft}) => {
+    console.log(singleNft);
 
     const {addProduct} = useContext(cartContext)
     const [checkOut, setCheckOut ] = useState(true)

@@ -10,22 +10,22 @@ const species = [
     },
     {
         id: 1,
-        path: "human",
+        path: "Human",
         specie: "Humanos"
     },
     {
         id: 2,
-        path: "alien",
+        path: "Alien",
         specie: "Aliens"
     },
     {
         id: 3,
-        path: "humanoid",
+        path: "Humanoid",
         specie: "Humanoides"
     },
     {
         id: 4,
-        path: "mythological creature",
+        path: "Mythological Creature",
         specie: "Mitológicos"
     }
 ]

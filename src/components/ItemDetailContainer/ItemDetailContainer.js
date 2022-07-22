@@ -1,22 +1,29 @@
 import React, { useEffect, useState } from 'react'
 import ItemDetail from '../ItemDetail/ItemDetail'
 import {useParams} from "react-router-dom"
+import { DB } from "../../firebase/firebase";
+import { doc, getDoc, collection } from "firebase/firestore"
 
 const ItemDetailContainer = () => {
     
     const [singleNft, setSingleNft] = useState([])
     const [loadingPage, setLoadingPage] = useState(true)
     const {id} = useParams()
-
+    
     useEffect(() => {
         
-        setTimeout(() => {
-          fetch(`https://rickandmortyapi.com/api/character/${id}`)
-          .then(Response => Response.json())
-          .then ((data) => setSingleNft(data))
-          .catch((err) => console.log("Error al leer la base de Datos"))
-          .finally(() => setLoadingPage(false))
-        }, 500);
+        const NFTcollection = collection(DB, "NFT-Collection")
+        const refDoc = doc(NFTcollection, id)
+        
+        getDoc(refDoc)
+        .then(result => {
+            console.log(result);
+            setSingleNft(result.data())
+        })
+        
+        .catch((err) => console.log("Error al leer la base de Datos"))
+        .finally(() => setLoadingPage(false))
+        
     }, [id])
     
 

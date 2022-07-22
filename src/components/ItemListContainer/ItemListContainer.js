@@ -1,25 +1,33 @@
 
-import React, { useState, useEffect, } from 'react'
+import React, { useState, useEffect, } from 'react';
 import ItemList from '../ItemList/ItemList';
-import {useParams} from "react-router-dom"
+import {useParams} from "react-router-dom";
+import {DB} from "../../firebase/firebase";
+import { getDocs, collection, query, where } from "firebase/firestore";
 
 const ItemListContainer = () => {
   
   const [products, setProducts]= useState([]);
   const [loadingPage, setLoadingPage] = useState(true);
   const {specieId} = useParams();
- 
+
   useEffect(() => {
+
     setLoadingPage(true)
-    const URL = specieId ? `https://rickandmortyapi.com/api/character/?species=${specieId}` : "https://rickandmortyapi.com/api/character/?species=humanoid"
+    const NFTcollection = collection(DB, "NFT-Collection")
+    const q = query(NFTcollection, where("species","==",`${specieId}`))
     
-    setTimeout(() => {
-      fetch(URL)
-      .then(Response => Response.json())
-      .then (({results}) => setProducts(results))
-      .catch((err) => console.log("Error al leer la base de Datos"))
-      .finally(() => setLoadingPage(false))
-    }, 500);
+    const NFTdata = specieId ? q : NFTcollection
+
+    getDocs(NFTdata)
+    .then(result => {
+      const list = result.docs.map((product) =>{
+        return product.data()
+      })
+      setProducts(list);
+    })
+    .catch((err) => console.log("Error al leer la base de Datos"))
+    .finally(() => setLoadingPage(false))
   }, [specieId])
     
   return (
