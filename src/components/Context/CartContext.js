@@ -1,5 +1,6 @@
 import React, { createContext, useState } from 'react'
-import infoExtra from '../../infoExtra'
+import { DB } from "../../firebase/firebase";
+import { collection, addDoc, serverTimestamp } from "firebase/firestore";
 
 export const cartContext = createContext ();
 const {Provider} = cartContext;
@@ -11,26 +12,27 @@ const CartProvider = ({children}) => {
     const [productsIncart, setProductsIncart] = useState([])
     const [totalQuantity, setTotalQuantity] = useState(0)
     const [totalPurchase, setTotalPurchase] = useState(0)
+    const [saleId, setSaleId] = useState("")
     
-    const addProduct = (product, quantity, id) => {
+    const addProduct = (product, quantity, id, priceP) => {
 
         if( !(productsIncart.some((prod) => prod.id === id)) ){
 
             productsIncart.length>0
             ? setProductsIncart ([...productsIncart, product])
             : setProductsIncart ([product])
-            quantities.push({quantity:quantity, id:id, price:(infoExtra.precios[id-1]*quantity).toFixed(2)})
+            quantities.push({quantity:quantity, id:id, price:priceP*quantity.toFixed(2)})
             setTotalQuantity(totalQuantity + quantity);
-            setTotalPurchase (totalPurchase + (infoExtra.precios[id-1]*quantity))
+            setTotalPurchase (totalPurchase + priceP*quantity)
         }
         else{
             quantities.filter(element => element.id === id).map(element => {
                 element.quantity += quantity
-                element.price = (element.price + (infoExtra.precios[id-1]*quantity)).toFixed(2)
+                element.price = (element.price + priceP*quantity).toFixed(2)
                 return null
             })
             setTotalQuantity(totalQuantity + quantity);
-            setTotalPurchase (totalPurchase + (infoExtra.precios[id-1]*quantity))
+            setTotalPurchase (totalPurchase + priceP*quantity)
         }
     }
 
@@ -53,8 +55,22 @@ const CartProvider = ({children}) => {
         setTotalPurchase(0)
     }
 
+    const confirmPurchase = (infoClient) => {
+        const sales = collection(DB, "Sales")
+        addDoc(sales, {
+            ClientData: infoClient,
+            items: productsIncart,
+            date: serverTimestamp(),
+            total: totalQuantity
+        })
+        .then((result) => {
+            setSaleId(result.id)
+        })
+
+    }
+
     return (
-        <Provider value={{productsIncart, quantities, totalQuantity, totalPurchase, addProduct, deleteProduct, clearCart}}>
+        <Provider value={{productsIncart, quantities, totalQuantity, totalPurchase, saleId, addProduct, deleteProduct, clearCart, confirmPurchase}}>
             {children}
         </Provider>
     )

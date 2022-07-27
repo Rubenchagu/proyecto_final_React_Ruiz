@@ -26,8 +26,11 @@ const Cart = () => {
       {totalQuantity>0 
       ?<>
           <button className="btn btn-primary w-50 mb-3" onClick={ () => clearCart() }>Vaciar Carrito</button>
-          <h6 className='card-header mb-3 bg-info'>Total NFTs: {totalQuantity}</h6>
-          <h6 className='card-header mb-3 bg-success'>Total Compra: <FaEthereum/> {(totalPurchase).toFixed(2)}</h6>
+          <div className='d-flex'>
+            <h6 className='card-header m-2 bg-info'>Total NFTs: {totalQuantity}</h6>
+            <h6 className='card-header m-2 bg-success'>Total Compra: <FaEthereum/> {(totalPurchase).toFixed(2)}</h6>
+            <NavLink style={{textDecoration:"none", color:"white"}} to="/ClientForm"><h6 className='card-header m-2 bg-warning'>Finalizar Compra</h6></NavLink>
+          </div>
         </>
       :<h6 className='header'>El carrito está vacío, compra <NavLink to="/">Aquí</NavLink></h6>
       }

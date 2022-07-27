@@ -2,7 +2,7 @@ import React, { useEffect, useState } from 'react'
 import ItemDetail from '../ItemDetail/ItemDetail'
 import {useParams} from "react-router-dom"
 import { DB } from "../../firebase/firebase";
-import { doc, getDoc, collection } from "firebase/firestore"
+import {doc, getDoc, collection } from "firebase/firestore"
 
 const ItemDetailContainer = () => {
     
@@ -12,13 +12,14 @@ const ItemDetailContainer = () => {
     
     useEffect(() => {
         
-        const NFTcollection = collection(DB, "NFT-Collection")
+        const NFTcollection = collection(DB, 'NFT-Collection');
         const refDoc = doc(NFTcollection, id)
-        
         getDoc(refDoc)
         .then(result => {
-            console.log(result);
-            setSingleNft(result.data())
+            setSingleNft({
+                id: result.id,
+                ...result.data()
+            })
         })
         
         .catch((err) => console.log("Error al leer la base de Datos"))

@@ -18,16 +18,19 @@ const ItemListContainer = () => {
     const q = query(NFTcollection, where("species","==",`${specieId}`))
     
     const NFTdata = specieId ? q : NFTcollection
-
+    
     getDocs(NFTdata)
-    .then(result => {
-      const list = result.docs.map((product) =>{
-        return product.data()
+      .then(result => {
+        const list = result.docs.map((product) =>{
+          return {
+            id: product.id,
+            ...product.data(),
+          }
+        })
+        setProducts(list);
       })
-      setProducts(list);
-    })
-    .catch((err) => console.log("Error al leer la base de Datos"))
-    .finally(() => setLoadingPage(false))
+      .catch((err) => console.log("Error al leer la base de Datos"))
+      .finally(() => setLoadingPage(false))
   }, [specieId])
     
   return (

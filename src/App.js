@@ -4,6 +4,7 @@ import NavBar from "./components/NavBar/NavBar";
 import { BrowserRouter, Routes, Route } from "react-router-dom";
 import Cart from "./components/Cart/Cart";
 import CartProvider from "./components/Context/CartContext";
+import ClientForm from "./components/ClientForm/ClientForm";
 
 function App() {
   return (
@@ -15,6 +16,7 @@ function App() {
           <Route path="/:specieId" element={<ItemListContainer/>} />
           <Route path="/character/:id" element={<ItemDetailContainer/>} />
           <Route path="/Cart" element={<Cart/>} />
+          <Route path="/ClientForm" element={<ClientForm/>}/>
         </Routes>
       </CartProvider>
    </BrowserRouter>
