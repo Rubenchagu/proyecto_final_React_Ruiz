@@ -29,7 +29,7 @@ const ItemDetailContainer = () => {
     
 
     return (
-        <div style={{margin:"20px 0 0 0"}}>
+        <div className='mt-4'>
             {loadingPage 
             ? <img style={{width: "100%", height:"100%"}} src="https://c.tenor.com/FBeNVFjn-EkAAAAC/ben-redblock-loading.gif" alt="Loading"/> 
             : <ItemDetail singleNft={singleNft}/>

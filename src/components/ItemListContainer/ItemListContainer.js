@@ -16,8 +16,9 @@ const ItemListContainer = () => {
     setLoadingPage(true)
     const NFTcollection = collection(DB, "NFT-Collection")
     const q = query(NFTcollection, where("species","==",`${specieId}`))
+    const qHome = query(NFTcollection, where("species","==",`Humanoid`))
     
-    const NFTdata = specieId ? q : NFTcollection
+    const NFTdata = specieId ? q : qHome
     
     getDocs(NFTdata)
       .then(result => {

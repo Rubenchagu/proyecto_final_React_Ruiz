@@ -1,6 +1,6 @@
 import React, { createContext, useState } from 'react'
 import { DB } from "../../firebase/firebase";
-import { collection, addDoc, serverTimestamp } from "firebase/firestore";
+import { collection, addDoc, serverTimestamp, updateDoc, doc } from "firebase/firestore";
 
 export const cartContext = createContext ();
 const {Provider} = cartContext;
@@ -66,6 +66,13 @@ const CartProvider = ({children}) => {
         .then((result) => {
             setSaleId(result.id)
         })
+
+        productsIncart.forEach((product) => quantities.filter((qty) => qty.id === product.id).forEach((prod) =>{
+
+            const updateSales = doc(DB, "NFT-Collection", `${prod.id}`)
+            updateDoc(updateSales, {stock: product.stock - prod.quantity})
+
+        }))
 
     }
 

@@ -7,11 +7,14 @@ const ClientForm = () => {
     const {totalQuantity, totalPurchase, saleId, clearCart, confirmPurchase} = useContext(cartContext)
     const [infoClient, setinfoClient] = useState({name:"", email:"", phone:""})
     const [endSalePage, setEndSalePage] = useState(true)
+    const [totalReceipt, setTotalReceipt] = useState([])
     
     const endPage = (infoClient) => {
         
+        setTotalReceipt([totalQuantity, totalPurchase])
         setEndSalePage(false)
         confirmPurchase(infoClient)
+        clearCart()
     }
    
     return (
@@ -27,7 +30,7 @@ const ClientForm = () => {
                     <label className="col-form-label mt-4">TELÉFONO</label>
                     <input onChange={ (e) => setinfoClient({...infoClient, phone:e.target.value}) } value={infoClient.phone} type="text" className="form-control" id="inputDefault"/>
                 </div>
-                <button className='btn btn-info w-50 mt-3' onClick={() => endPage(infoClient)}>Confirmar compra</button>
+                <button className='btn btn-info w-50 mt-3' disabled={(!!infoClient.name && !!infoClient.email && !!infoClient.phone ? false : true )} onClick={() => endPage(infoClient)}>Confirmar compra</button>
             </div> 
             
             : <div className='card m-auto mt-3 w-50'>
@@ -36,12 +39,12 @@ const ClientForm = () => {
                     <span>Nombre: {infoClient.name}</span>
                     <span>Email: {infoClient.email}</span>
                     <span>Teléfono: {infoClient.phone}</span>
-                    <span>Cantidad Total: {totalQuantity}</span>
-                    <span>Precio Total: {totalPurchase}</span>
+                    <span>Cantidad Total: {totalReceipt[0]}</span>
+                    <span>Precio Total: {totalReceipt[1]}</span>
                     <span>ID de compra: {saleId}</span>
                 </div>
                 <div className='d-flex justify-content'>
-                    <NavLink style={{textDecoration:"none", color:"white"}} to="/"><button className='btn btn-info' onClick={() => clearCart()}>Ir al INICIO</button></NavLink>
+                    <NavLink style={{textDecoration:"none", color:"white"}} to="/"><button className='btn btn-info'>Ir al INICIO</button></NavLink>
                 </div>
             </div>
         }
