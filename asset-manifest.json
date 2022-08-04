@@ -1,13 +1,13 @@
 {
   "files": {
-    "main.js": "/Rubenchagu/proyecto_final_React_Ruiz.git/static/js/main.d56d8c60.js",
-    "static/js/787.df452eb2.chunk.js": "/Rubenchagu/proyecto_final_React_Ruiz.git/static/js/787.df452eb2.chunk.js",
-    "static/media/LogoNft.jpg": "/Rubenchagu/proyecto_final_React_Ruiz.git/static/media/LogoNft.4cce4fb58e834f3f1b09.jpg",
-    "index.html": "/Rubenchagu/proyecto_final_React_Ruiz.git/index.html",
-    "main.d56d8c60.js.map": "/Rubenchagu/proyecto_final_React_Ruiz.git/static/js/main.d56d8c60.js.map",
-    "787.df452eb2.chunk.js.map": "/Rubenchagu/proyecto_final_React_Ruiz.git/static/js/787.df452eb2.chunk.js.map"
+    "main.js": "/proyecto_final_React_Ruiz/static/js/main.c78f825a.js",
+    "static/js/787.df452eb2.chunk.js": "/proyecto_final_React_Ruiz/static/js/787.df452eb2.chunk.js",
+    "static/media/LogoNft.jpg": "/proyecto_final_React_Ruiz/static/media/LogoNft.4cce4fb58e834f3f1b09.jpg",
+    "index.html": "/proyecto_final_React_Ruiz/index.html",
+    "main.c78f825a.js.map": "/proyecto_final_React_Ruiz/static/js/main.c78f825a.js.map",
+    "787.df452eb2.chunk.js.map": "/proyecto_final_React_Ruiz/static/js/787.df452eb2.chunk.js.map"
   },
   "entrypoints": [
-    "static/js/main.d56d8c60.js"
+    "static/js/main.c78f825a.js"
   ]
 }
