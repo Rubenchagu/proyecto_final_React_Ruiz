@@ -12,7 +12,7 @@ function App() {
       <CartProvider>
         <NavBar/>
         <Routes>
-          <Route path="/" element={<ItemListContainer/>} />
+          <Route path="/proyecto_final_React_Ruiz" element={<ItemListContainer/>} />
           <Route path="/:specieId" element={<ItemListContainer/>} />
           <Route path="/character/:id" element={<ItemDetailContainer/>} />
           <Route path="/Cart" element={<Cart/>} />

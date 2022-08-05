@@ -18,9 +18,9 @@ const ItemDetail = ({singleNft}) => {
 
     return (
     
-    <div className='d-flex align-items-center'>
-        <div className='d-flex justify-content-center w-50'><img src={image} alt="SingleNFT" /></div>
-        <div className='card w-50 m-5 text-white bg-info align-items-center' style={{margin:"0 auto"}}>
+    <div className='d-flex justify-content-center align-items-center'>
+        <div className='d-flex justify-content-center m-4 w-50'><img src={image} alt="SingleNFT"/></div>
+        <div className='card w-50 text-white bg-info align-items-center' style={{margin:"0 auto"}}>
             <div className="card-header m-3">{name}</div>
             <div className='card-body text-left'>    
                 <h6>Nombre: {name}</h6>
@@ -35,7 +35,7 @@ const ItemDetail = ({singleNft}) => {
             ? <ItemCount goToCart= {goToCart} stock={stock} initial={1}/>
             : <div> 
                 <NavLink to="/Cart"><button className="btn btn-secondary m-1"> Finalizar Compra </button></NavLink>
-                <NavLink to="/"><button className="btn btn-primary m-2">Ver más NFTs</button></NavLink>
+                <NavLink to="/proyecto_final_React_Ruiz"><button className="btn btn-primary m-2">Ver más NFTs</button></NavLink>
             </div>
             }
         </div>

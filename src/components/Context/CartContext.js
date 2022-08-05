@@ -73,7 +73,6 @@ const CartProvider = ({children}) => {
             updateDoc(updateSales, {stock: product.stock - prod.quantity})
 
         }))
-
     }
 
     return (

@@ -29,7 +29,7 @@ const ItemDetailContainer = () => {
     
 
     return (
-        <div className='mt-4'>
+        <div className='d-flex justify-content-center mt-5'>
             {loadingPage 
             ? <img style={{width: "100%", height:"100%"}} src="https://c.tenor.com/FBeNVFjn-EkAAAAC/ben-redblock-loading.gif" alt="Loading"/> 
             : <ItemDetail singleNft={singleNft}/>

@@ -5,7 +5,7 @@ import {NavLink} from "react-router-dom"
 const species = [
     {
         id: 0,
-        path: "/",
+        path: "/proyecto_final_React_Ruiz",
         specie: "Inicio"
     },
     {
@@ -34,8 +34,8 @@ const NavBar= () => {
         <header>
             <nav className="navbar navbar-expand-lg navbar-dark bg-dark">
                 <div className="container-fluid">
-                    <NavLink to="/"><img style={{width:"70px", height:"70px", margin:"10px"}} src={logo} alt="Logo RnM"/></NavLink>
-                    <NavLink className="navbar-brand" to="/">Rick y Morty NFTs</NavLink>
+                    <NavLink to="/proyecto_final_React_Ruiz"><img style={{width:"70px", height:"70px", margin:"10px"}} src={logo} alt="Logo RnM"/></NavLink>
+                    <NavLink className="navbar-brand" to="/proyecto_final_React_Ruiz">Rick y Morty NFTs</NavLink>
 
                     <div className="collapse navbar-collapse" id="navbarNav">
                         <ul className="navbar-nav">

@@ -32,7 +32,7 @@ const Cart = () => {
             <NavLink style={{textDecoration:"none", color:"white"}} to="/ClientForm"><h6 className='card-header m-2 bg-warning'>Finalizar Compra</h6></NavLink>
           </div>
         </>
-      :<h6 className='header'>El carrito está vacío, compra <NavLink to="/">Aquí</NavLink></h6>
+      :<h6 className='header'>El carrito está vacío, compra <NavLink to="/proyecto_final_React_Ruiz">Aquí</NavLink></h6>
       }
     </div>
   )
